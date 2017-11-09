@@ -32,7 +32,7 @@ Work in progress. Everything could change, don't treat as a stable thingy. I did
 
 ## Install
 
-```sh
+``` sh
 npm install --save bemto-components
 ```
 
@@ -40,7 +40,7 @@ npm install --save bemto-components
 
 At definition:
 
-``` jsx
+``` jsx static
 import bemto from 'bemto-components';
 
 const Block = bemto('div.myBlock');
@@ -48,7 +48,7 @@ const Block = bemto('div.myBlock');
 
 Usage:
 
-``` jsx
+``` xml
 <Block _mod>
   Hello
 </Block>
@@ -64,7 +64,7 @@ This would output
 
 Both boolean and string values are supported for modifiers:
 
-``` jsx
+``` xml
 <Block _mod1 _mod2='mod2value' />
 ```
 
@@ -72,7 +72,7 @@ Both boolean and string values are supported for modifiers:
 
 Just pass a bemto-component inside styled-components:
 
-```jsx
+``` jsx static
 import bemto from 'bemto-components'
 
 const Block = styled(bemto('div'))`
@@ -86,7 +86,7 @@ const Block = styled(bemto('div'))`
 
 Usage:
 
-``` jsx
+``` xml
 <Block _mod />
 ```
 
@@ -98,7 +98,7 @@ Whenever you define your bemto block, you can pass an object that would describe
 
 For example, what if we'd want a block that would have an extra wrapper inside for its content, but as well would have two helper elements at the start of the block, one of which could be optional? Easy!
 
-```jsx
+``` jsx static
 const Bento = bemto('.Bento', {
   content: [
     { elem: 'Helper1' },
@@ -110,13 +110,13 @@ const Bento = bemto('.Bento', {
 
 Then we can call it like that:
 
-```jsx
+``` xml
 <Bento>Hello</Bento>
 ```
 
 And we'd get this HTML for it:
 
-```html
+``` html
 <div class="Bento">
   <div class="Bento__Helper1"></div>
   <div class="Bento__Content">
@@ -131,7 +131,7 @@ As you can see, the `Helper1` element is always rendered, while the `Helper2` is
 
 Yep, whenever you define a block with its elements, you get also a way to _control_ those elements. What if we'd call our block like this?
 
-```jsx
+``` xml
 <Bento __Helper1='foo' __Helper2='bar'>
   Hello
 </Bento>
@@ -139,7 +139,7 @@ Yep, whenever you define a block with its elements, you get also a way to _contr
 
 Can you guess what we'd get?
 
-```html
+``` html
 <div class="Bento">
   <div class="Bento__Helper1">foo</div>
   <div class="Bento__Helper2">bar</div>
@@ -151,7 +151,7 @@ Can you guess what we'd get?
 
 You can pass strings, arrays or other html/react elements inside. But what if you'd want to change some of those elements a bit? Easy:
 
-```jsx
+``` jsx static
 <Bento
   __Helper1={{
     content: 'foo',
@@ -172,7 +172,7 @@ Whenever you pass a special object, you're getting a way to define props on this
 
 What I like about these elements the most is that there is build-in support for styled-components. Look:
 
-```jsx
+``` jsx static
 const Bento = styled(bemto({
   content: [
     { elem: 'Helper1' },
@@ -204,7 +204,7 @@ That's it! We can just wrap our bemto block with `styled()` and all of the autom
 
 But wait. The best part: all of this works with `.extend`!
 
-```jsx
+``` jsx static
 const CuteBentoBox = Bento.extend`
   background: yellow;
 
@@ -227,7 +227,7 @@ There are a lot of other planned features around this kind of elements, but thos
 
 For bemto-components you can call `.elem()` method to create an element:
 
-``` jsx
+``` jsx static
 import bemto from 'bemto-components';
 
 const Block = bemto('.myBlock');
@@ -236,7 +236,7 @@ Block.Element = Block.elem('myElement');
 
 And then use it like this:
 
-``` jsx
+``` xml
 <Block>
   <Block.Element>Hello</Block.Element>
 </Block>
@@ -252,7 +252,7 @@ Which would output
 
 You can also use an `addElem()` for creating elements for any given block:
 
-``` jsx
+``` jsx static
 import bemto from 'bemto-components';
 
 const Block = bemto('.myBlock').addElem('myElement');
@@ -264,7 +264,7 @@ would be basically the same as previous example.
 
 Like with creation of Blocks, you can use a tagString, passing it as a second param when creating an element:
 
-``` jsx
+``` jsx static
 import bemto from 'bemto-components';
 
 const Block = bemto('.myBlock');
@@ -273,7 +273,7 @@ Block.Element = Block.elem('myElement', 'span.extraElemClass');
 
 Again,
 
-``` jsx
+``` xml
 <Block>
   <Block.Element>Hello</Block.Element>
 </Block>
@@ -289,7 +289,7 @@ Would output
 
 As after wrapping with styled-component you would lose the `elem` method, there is an extra way to create elements:
 
-```jsx
+``` jsx static
 import bemto from 'bemto-components'
 
 const Block = styled(bemto())`
@@ -313,7 +313,7 @@ And there you'd even get the styled-components' names as block names.
 
 There is a slightly strange-looking API that you can use to create elements without saving them. For doing this you can call your block, but with an addition of a `__BemtoElem` prop, which value should be an object:
 
-```jsx
+``` jsx static
 <Block>
   <Block __BemtoElem={{ name: 'Element', tagString: 'span' }}>Hello</Block>
 </Block>
@@ -321,7 +321,7 @@ There is a slightly strange-looking API that you can use to create elements with
 
 This can be used whenever you want to create a stylable composition of blocks and elements:
 
-```jsx
+``` jsx static
 const BemtoBlock = bemto();
 
 class BlockStructure extends React.Component {
