@@ -7,7 +7,9 @@
 [version]: https://img.shields.io/npm/v/bemto-components.svg
 [version-link]: https://www.npmjs.com/package/bemto-components
 
-Smart components for using parts of [BEM methodology](https://en.bem.info/methodology/quick-start/) with [React](https://reactjs.org/). Best used together with [styled-components](https://www.styled-components.com/).
+Smart components for using [BEM methodology](https://en.bem.info/methodology/quick-start/) with [React](https://reactjs.org/).
+
+Best used together with [styled-components](https://www.styled-components.com/).
 
 
 ## What does it do?
